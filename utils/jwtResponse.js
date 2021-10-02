@@ -19,7 +19,7 @@ exports.respondWithJwtAndCookie = async (statusCode, message, payload, res, next
 
         //send token along with cookies
         res
-            .header("Access-Control-Allow-Origin", "https://www.erida.in")
+            .header("Access-Control-Allow-Origin", "https://erida.in")
             .header('Access-Control-Allow-Credentials', true)
             .header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
             .status(statusCode)

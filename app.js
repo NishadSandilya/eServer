@@ -62,7 +62,7 @@ require('./utils/dbConnection')
 // }
 
 const corsOptions = {
-    origin: 'https://www.erida.in',
+    origin: 'https://erida.in',
     optionsSuccessStatus: 200,
     credentials: true,
 }

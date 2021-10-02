@@ -29,7 +29,7 @@ exports.auth = asyncHandler(async (req, res, next) => {
 
     //Check if phone has been changed recently
     if (user.isPhoneModifiedRecently(decodedJwt.iat)) return res
-        .header("Access-Control-Allow-Origin", "http://www.erida.in")
+        .header("Access-Control-Allow-Origin", "https://erida.in")
         .header('Access-Control-Allow-Credentials', true)
         .header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
         .status(498)
