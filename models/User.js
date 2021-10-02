@@ -56,7 +56,7 @@ const schema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: 'http://www.erida.herokuapp.com/cdn/profilePictures/userDefault.png',
+        default: 'https://erida.herokuapp.com/cdn/profilePictures/userDefault.png',
     },
     //Embedded fields
     // addresses: [
