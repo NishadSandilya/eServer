@@ -8,10 +8,9 @@ exports.respondWithJwtAndCookie = async (statusCode, message, payload, res, next
         sameSite: "strict",
         path: '/',
         expires: new Date(Date.now() + process.env.COOKIEEXPIRES * 24 * 60 * 60 * 1000),
-        httpOnly: true
+        httpOnly: true,
+        secure: true
     }
-    //Set secure https on production
-    if (process.env.NODE_ENV === 'production') { cookieOptions[secure] = true }
 
     try {
         //Creating the token
