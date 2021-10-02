@@ -5,10 +5,11 @@ const jwt = require('jsonwebtoken')
 exports.respondWithJwtAndCookie = async (statusCode, message, payload, res, next) => {
     //Sending the cookie first 
     const cookieOptions = {
-        sameSite: "strict",
+        sameSite: "none",
         path: '/',
         expires: new Date(Date.now() + process.env.COOKIEEXPIRES * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true
     }
 
     try {
