@@ -9,6 +9,7 @@ exports.respondWithJwtAndCookie = async (statusCode, message, payload, res, next
         path: '/',
         expires: new Date(Date.now() + process.env.COOKIEEXPIRES * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true
     }
 
     try {

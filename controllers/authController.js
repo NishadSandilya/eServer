@@ -27,13 +27,20 @@ exports.auth = asyncHandler(async (req, res, next) => {
     //Throw error if user recently deleted
     if(!user) return next(new AppErrors('There was an issue with the account. Please contact support', 499))
 
+    const cookieOptions = {
+        sameSite: "none",
+        path: '/',
+        httpOnly: true,
+        secure: true
+    }
+
     //Check if phone has been changed recently
     if (user.isPhoneModifiedRecently(decodedJwt.iat)) return res
         .header("Access-Control-Allow-Origin", "https://erida.in")
         .header('Access-Control-Allow-Credentials', true)
         .header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
         .status(498)
-        .clearCookie('ESS')
+        .clearCookie('ESS', cookieOptions)
         .send("Phone number changed recently, loggin-out!")
 //store the jwt in a session variable
 req.decodedJwt = decodedJwt

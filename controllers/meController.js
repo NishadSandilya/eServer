@@ -16,13 +16,19 @@ exports.detailsMe = asyncHandler(async (req, res, next) => {
     respond(200, "OK", user, res)
 })
 
+const cookieOptions = {
+    sameSite: "none",
+    path: '/',
+    httpOnly: true,
+    secure: true
+}
 exports.logOut = asyncHandler(async (req, res, next) => {
     res
         .header("Access-Control-Allow-Origin", "https://erida.in")
         .header('Access-Control-Allow-Credentials', true)
         .header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
         .status(200)
-        .clearCookie('ESS')
+        .clearCookie('ESS', cookieOptions)
         .json({
             message: "Logged out"
         })
