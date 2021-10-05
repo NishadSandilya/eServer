@@ -64,7 +64,7 @@ exports.createNewOrder = asyncHandler(async (req, res, next) => {
 
         if (!tempUser) {
             //create user and bind the order to the user
-            const newUser = await User.create({ phone: req.body.numbers })
+            const newUser = await User.create({ phone: req.body.numbers, firstname: `${req.body.firstname ? req.body.firstname : undefined}`, lastname: `${req.body.lastname ? req.body.lastname : undefined}` })
 
             orderDetails = {
                 ...orderDetails,
