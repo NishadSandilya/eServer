@@ -20,7 +20,10 @@ exports.createNewOrder = asyncHandler(async (req, res, next) => {
         phone: req.body.numbers,
         address: req.body.address ? req.body.address : undefined,
         userNotes: req.body.issue ? req.body.issue : undefined,
-        orderType: req.body.orderType
+        orderType: req.body.orderType,
+        orderStatus: req.body.orderStatus ? req.body.orderStatus : undefined,
+        paymentCompleted: req.body.paymentCompleted ? req.body.paymentCompleted : undefined,
+        paymentMode: req.body.paymentMode ? req.body.paymentMode : undefined        
     }
 
     //Check if the req body contain an ITEM SKU(For user created orders) to add items

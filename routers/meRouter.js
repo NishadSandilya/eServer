@@ -1,7 +1,7 @@
 //Current user router
 
-const { auth } = require('../controllers/authController')
-const { detailsMe, logOut, updateMeName, updateUserAvatar, getUserOrders } = require('../controllers/meController')
+const { auth, admin } = require('../controllers/authController')
+const { detailsMe, logOut, updateMeName, updateUserAvatar, getUserOrders, getAllOrdersAdmin } = require('../controllers/meController')
 
 //Modules
 const router = require('express').Router()

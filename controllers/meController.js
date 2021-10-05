@@ -105,3 +105,9 @@ exports.searchByOrderID = asyncHandler(async(req, res, next) => {
 
     respond(200, "OK", order, res)
 })
+
+//Get all orders admin
+exports.getAllOrdersAdmin = asyncHandler(async(req, res, next) => {
+    const orders = await Order.find({}).sort('-createdAt paymentCompleted')
+    respond(200, "OK", orders, res)
+})

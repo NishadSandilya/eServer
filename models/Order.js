@@ -139,6 +139,11 @@ const schema = new mongoose.Schema({
 
 //Document middleware
 schema.pre('save', function(next){
+
+    if(this.isNew){
+        if(this.paymentCompleted) this.isOrderEditable = false
+    }
+
     let tempVal = 0
     this.items.map(item => {
         tempVal += (item.value * item.quantity)

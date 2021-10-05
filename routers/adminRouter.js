@@ -1,5 +1,5 @@
 const { auth, admin } = require('../controllers/authController')
-const { detailsMe, searchOrdersByPhone, searchOrderById, searchByOrderID } = require('../controllers/meController')
+const { detailsMe, searchOrdersByPhone, searchOrderById, searchByOrderID, getAllOrdersAdmin } = require('../controllers/meController')
 const { updateOrder } = require('../controllers/orderController')
 
 
@@ -26,6 +26,10 @@ router
 router
     .route('/search-by-orderID')
     .post(auth, admin, searchByOrderID)
+
+    router
+    .route('/all-orders')
+    .get(auth, admin, getAllOrdersAdmin)
 
 //Default exporting router
 module.exports = router
