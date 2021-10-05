@@ -2,22 +2,17 @@
 
 //Required modules
 const mongoose = require('mongoose')
-const otpGenerator = require('otp-generator')
 const validator = require('validator')
 const { sendSMS } = require('../utils/smsService')
+const orderid = require('order-id')(process.env.RPWHSECRET)
 
 //Create order schema
 const schema = new mongoose.Schema({
     orderId: {
-        type: Number,
+        type: String,
         unique: true,
         default: function() {
-            return otpGenerator.generate(8, {
-                digits: 1,
-                alphabets: 0,
-                upperCase: 0,
-                specialChars: 0
-            })
+            return orderid.generate()
         }
     },
     userId: {
