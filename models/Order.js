@@ -159,30 +159,30 @@ schema.pre('save', function(next){
 })
 
 //Implementing the Promo Code algorithm
-// schema.pre('save', async function(next){
-//     //Promo code validations
-//     //If there is a promocode, check if its valid
-//     if(this.promo){
-//         //Check if promo is used only with a gaming order
-//         if(this.orderType !== 'Gaming Session') return next(new AppErrors('Promo Codes can only be used with Gaming Session Orders', 400))
-//         //Check if the promo code is valid
-//         if(!await Affiliate.findOne({code: this.promo})) return next(new AppErrors('Promo Code is not valid', 400))
-//         //Check if the promo code has already been used by the user
-//         if(await User.findOne({promosUsed: this.promo})) return next(new AppErrors("Promo Code Already Used Once", 400))
-//         //Apply the promocode if everything's valid
-//         const promoDiscount = this.orderValue * 0.1
-//         this.orderValue -= promoDiscount
-//         //Modify the Affiliate's Profile
-//         //Get affiliate first
-//         const affiliate = await Affiliate.findOne({code: this.promo})
-//         //Update Affiliate's Unpaid Earnings
-//         const affiliateEarning = this.orderValue - (this.orderValue * affiliate.rewardPercentage / 100)
-//         affiliate.unpaidEarnings += affiliateEarning
-//         affiliate.totalEarnings += affiliateEarning
-//         await affiliate.save({validateBeforeSave: false})
-//     }
-//     next()
-// })
+schema.pre('save', async function(next){
+    //Promo code validations
+    //If there is a promocode, check if its valid
+    if(this.promo){
+        //Check if promo is used only with a gaming order
+        if(this.orderType !== 'Gaming Session') return next(new AppErrors('Promo Codes can only be used with Gaming Session Orders', 400))
+        //Check if the promo code is valid
+        if(!await Affiliate.findOne({code: this.promo})) return next(new AppErrors('Promo Code is not valid', 400))
+        //Check if the promo code has already been used by the user
+        if(await User.findOne({promosUsed: this.promo})) return next(new AppErrors("Promo Code Already Used Once", 400))
+        //Apply the promocode if everything's valid
+        const promoDiscount = this.orderValue * 0.1
+        this.orderValue -= promoDiscount
+        //Modify the Affiliate's Profile
+        //Get affiliate first
+        const affiliate = await Affiliate.findOne({code: this.promo})
+        //Update Affiliate's Unpaid Earnings
+        const affiliateEarning = this.orderValue - (this.orderValue * affiliate.rewardPercentage / 100)
+        affiliate.unpaidEarnings += affiliateEarning
+        affiliate.totalEarnings += affiliateEarning
+        await affiliate.save({validateBeforeSave: false})
+    }
+    next()
+})
 
 // schema.post('save', async function(next){
 //     //Update the user after the order's done
