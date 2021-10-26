@@ -184,15 +184,15 @@ schema.pre('save', function(next){
 //     next()
 // })
 
-schema.post('save', async function(next){
-    //Update the user after the order's done
-    if(this.promo){
-        const user = await User.findOne({phone: this.phone})
-        user.promosUsed.addToSet(this.promo)
-        await user.save({validateBeforeSave: false})
-    }
-    next()
-})
+// schema.post('save', async function(next){
+//     //Update the user after the order's done
+//     if(this.promo){
+//         const user = await User.findOne({phone: this.phone})
+//         user.promosUsed.addToSet(this.promo)
+//         await user.save({validateBeforeSave: false})
+//     }
+//     next()
+// })
 
 schema.pre(/^find/, function(next){
     this.populate({
