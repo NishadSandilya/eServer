@@ -123,7 +123,10 @@ const schema = new mongoose.Schema({
     //         }
     //     }
     // ],
-    //Helper fields    
+    //Helper fields
+    promosUsed: {
+        type: [String]
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
@@ -154,8 +157,8 @@ const schema = new mongoose.Schema({
     passwordResetTokenExpiresAt: { type: Date, select: false },
     emailLastModified: { type: Date, select: false },
     passwordLastModified: { type: Date, select: false },
-    phoneLastModified: {type: Date, select: false}
-},{
+    phoneLastModified: { type: Date, select: false }
+}, {
     toJSON: { virtuals: true },
     toObject: { virtuals: true }
 })
@@ -180,28 +183,28 @@ const schema = new mongoose.Schema({
 //Prototype Methods
 
 //Check if user name is the same
-schema.methods.isUserNameSame = function(firstname, lastname){
+schema.methods.isUserNameSame = function (firstname, lastname) {
     return this.firstname === firstname && this.lastname === lastname
 }
 
 //Change username
-schema.methods.updateUserName = function(firstname, lastname){
+schema.methods.updateUserName = function (firstname, lastname) {
     this.firstname = firstname
     this.lastname = lastname
 }
 //Check if user name is the same
-schema.methods.isPhoneSame = function(number){
+schema.methods.isPhoneSame = function (number) {
     return this.phone === number
 }
 
 //Change username
-schema.methods.updatePhone = function(number){
+schema.methods.updatePhone = function (number) {
     this.phoneLastModified = Date.now() - 1000
     this.phone = number
 }
 
-schema.methods.isPhoneModifiedRecently = function(jwtIssue) {
-    if(this.phoneLastModified){
+schema.methods.isPhoneModifiedRecently = function (jwtIssue) {
+    if (this.phoneLastModified) {
         return parseInt(this.phoneLastModified.getTime() / 1000, 10) > jwtIssue;
     }
     return false
@@ -248,8 +251,8 @@ schema.methods.isPhoneModifiedRecently = function(jwtIssue) {
 //Schema methods
 
 //Function to check if the token is fresh after a phone change
-schema.methods.isPhoneChangedAfterAJwtIssue = function(jwtIat) {
-    if(this.phoneLastModified){
+schema.methods.isPhoneChangedAfterAJwtIssue = function (jwtIat) {
+    if (this.phoneLastModified) {
         console.log(parseInt(this.phoneLastModified.getTime() / 1000, 10), jwtIat)
         return parseInt(this.phoneLastModified.getTime() / 1000, 10) > jwtIat;
     }

@@ -23,7 +23,8 @@ exports.createNewOrder = asyncHandler(async (req, res, next) => {
         orderType: req.body.orderType,
         orderStatus: req.body.orderStatus ? req.body.orderStatus : undefined,
         paymentCompleted: req.body.paymentCompleted ? req.body.paymentCompleted : undefined,
-        paymentMode: req.body.paymentMode ? req.body.paymentMode : undefined        
+        paymentMode: req.body.paymentMode ? req.body.paymentMode : undefined,
+        promo: req.body.promo ? req.body.promo : undefined,        
     }
 
     //Check if the req body contain an ITEM SKU(For user created orders) to add items
@@ -64,8 +65,7 @@ exports.createNewOrder = asyncHandler(async (req, res, next) => {
 
         if (!tempUser) {
             //create user and bind the order to the user
-            const newUser = await User.create({ phone: req.body.numbers, firstname: `${req.body.firstname ? req.body.firstname : undefined}`, lastname: `${req.body.lastname ? req.body.lastname : undefined}` })
-
+            const newUser = await User.create({ phone: req.body.numbers, firstname: `${req.body.firstname ? req.body.firstname : undefined}`, lastname: `${req.body.lastname ? req.body.lastname : undefined}`})
             orderDetails = {
                 ...orderDetails,
                 userId: newUser?._id
