@@ -176,7 +176,7 @@ schema.pre('save', async function(next){
         //Get affiliate first
         const affiliate = await Affiliate.findOne({code: this.promo})
         //Update Affiliate's Unpaid Earnings
-        const affiliateEarning = this.orderValue - (this.orderValue * affiliate.rewardPercentage / 100)
+        const affiliateEarning = this.orderValue * affiliate.rewardPercentage / 100
         affiliate.unpaidEarnings += affiliateEarning
         affiliate.totalEarnings += affiliateEarning
         await affiliate.save({validateBeforeSave: false})
@@ -184,15 +184,14 @@ schema.pre('save', async function(next){
     next()
 })
 
-// schema.post('save', async function(next){
-//     //Update the user after the order's done
-//     if(this.promo){
-//         const user = await User.findOne({phone: this.phone})
-//         user.promosUsed.addToSet(this.promo)
-//         await user.save({validateBeforeSave: false})
-//     }
-//     next()
-// })
+schema.post('save', async function(){
+    //Update the user after the order's done
+    if(this.promo){
+        const user = await User.findOne({phone: this.phone})
+        user.promosUsed.addToSet(this.promo)
+        await user.save({validateBeforeSave: false})
+    }
+})
 
 schema.pre(/^find/, function(next){
     this.populate({
