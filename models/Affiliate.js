@@ -28,6 +28,10 @@ const schema = new mongoose.Schema({
             message: 'Invalid Phone Number'
         },
     },
+    discount: {
+        type: Number,
+        required: [true, "The Discount percentage of the Affiliate is Required"]
+    },
     brand: {
         type: String,
         required: [true, "The name of the Store or Brand is Required"]

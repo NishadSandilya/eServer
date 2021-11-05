@@ -170,11 +170,11 @@ schema.pre('save', async function(next){
         //Check if the promo code has already been used by the user
         if(await User.findOne({promosUsed: this.promo})) return next(new AppErrors("Promo Code Already Used Once", 400))
         //Apply the promocode if everything's valid
-        const promoDiscount = this.orderValue * 0.1
+        const affiliate = await Affiliate.findOne({code: this.promo})
+        const promoDiscount = this.orderValue * (affiliate.discount / 100)
         this.orderValue -= promoDiscount
         //Modify the Affiliate's Profile
         //Get affiliate first
-        const affiliate = await Affiliate.findOne({code: this.promo})
         //Update Affiliate's Unpaid Earnings
         const affiliateEarning = this.orderValue * affiliate.rewardPercentage / 100
         affiliate.unpaidEarnings += affiliateEarning
