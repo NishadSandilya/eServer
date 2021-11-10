@@ -1,3 +1,5 @@
+const { getAllCourses } = require('../controllers/courseController')
+
 //Required modules here
 const router = require('express').Router()
 
