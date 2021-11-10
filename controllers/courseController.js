@@ -1,4 +1,4 @@
-const Tempcourse = require("../models/TempCourse");
+const Tempcourse = require("../models/Tempcourse");
 const { asyncHandler } = require("../utils/asyncHandler");
 const { respond } = require("../utils/response");
 
