@@ -27,6 +27,7 @@ const orderRouter = require('./routers/orderRouter')
 const itemRouter = require('./routers/itemRouter')
 const razorpayRouter = require('./routers/razorpayRouter')
 const ping = require('./routers/ping')
+const courseRouter = require('./routers/courseRouter')
 
 //Initialize a rate limiter to prevent brute force and DOS attacks
 const limiter = rateLimit({
@@ -113,6 +114,7 @@ app.use(hpp())
 app.use(greetingsRouter)
 app.use('/v1', ping)
 app.use('/v1/users',userRouter)
+app.use('/v1/courses', courseRouter)
 app.use('/v1/auth/googleOAuth2', googleOAuth2Router)
 app.use('/v1/users/phone', phoneVerificationRouter)
 app.use('/v1/secure/reCaptcha-validation', reCaptchaV2Router)
