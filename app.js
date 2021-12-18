@@ -77,14 +77,14 @@ const corsOptions = {
 
 //Return no favico
 app.get('/favicon.ico', (req, res) => {res.status(204)})
+//using free cors on single route
+app.use('/v1/appointment-service', cors(corsOptionsFree))
+app.options('/v1/appointment-service', cors(corsOptionsFree))
 
 //using cors on all routes
 app.use(cors(corsOptions))
 //using cors options on all routes(Preflight)
 app.options('*', cors(corsOptions))
-//using free cors on single route
-app.use('/v1/appointment-service', cors(corsOptionsFree))
-app.options('/v1/appointment-service', cors(corsOptionsFree))
 
 //Set secure HTTP Headers
 app.use(helmet())
