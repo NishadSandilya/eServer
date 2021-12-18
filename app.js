@@ -63,23 +63,22 @@ require('./utils/dbConnection')
 //     optionsSuccessStatus: 200
 // }
 
-const corsOptionsFree = {
-    origin: "*",
-    optionsSuccessStatus: 200,
-    credentials: false
-}
+const whitelist = ['http://localhost:3000', 'https://erida.in']
 
 const corsOptions = {
-    origin: 'https://erida.in',
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
     optionsSuccessStatus: 200,
     credentials: true,
 }
 
 //Return no favico
-app.get('/favicon.ico', (req, res) => {res.status(204)})
-//using free cors on single route
-app.use('/v1/appointment-service', cors(corsOptionsFree))
-app.options('/v1/appointment-service', cors(corsOptionsFree))
+app.get('/favicon.ico', (req, res) => { res.status(204) })
 
 //using cors on all routes
 app.use(cors(corsOptions))
@@ -123,7 +122,7 @@ app.use(hpp())
 //Use Routers
 app.use(greetingsRouter)
 app.use('/v1', ping)
-app.use('/v1/users',userRouter)
+app.use('/v1/users', userRouter)
 app.use('/v1/courses', courseRouter)
 app.use('/v1/auth/googleOAuth2', googleOAuth2Router)
 app.use('/v1/users/phone', phoneVerificationRouter)
