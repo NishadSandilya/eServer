@@ -63,6 +63,12 @@ require('./utils/dbConnection')
 //     optionsSuccessStatus: 200
 // }
 
+const corsOptionsFree = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+    credentials: false
+}
+
 const corsOptions = {
     origin: 'https://erida.in',
     optionsSuccessStatus: 200,
@@ -76,6 +82,8 @@ app.get('/favicon.ico', (req, res) => {res.status(204)})
 app.use(cors(corsOptions))
 //using cors options on all routes(Preflight)
 app.options('*', cors(corsOptions))
+//using free cors on single route
+app.options('/v1/appointment-service', cors(corsOptionsFree))
 
 //Set secure HTTP Headers
 app.use(helmet())
