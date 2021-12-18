@@ -19,7 +19,7 @@ exports.sendAppointmentDetails = asyncHandler(async(req, res, next) => {
     await new MSNMail(appointment).sendEmailNotification()
 
     //Send msn the SMS
-    await sendSMS(8638779180, `Alert! New Appointment received in Mail. Please check your gmail inbox at ${'https://mail.google.com'}`)
+    await sendSMS(8486887503, `Alert! New Appointment received in Mail. Please check your gmail inbox at ${'https://mail.google.com'}`)
 
     //Send the user an SMS as well
     await sendSMS(req.body.phone, `Hi ${req.body.name}! Welcome to MSN Eye Hospital. We have received your online appointment and will get to you soon.`)

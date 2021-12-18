@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer')
 class MSNMail {
     //Declaring class properties
     constructor(appointment) {
-        this.to = "theesaan@gmail.com"
+        this.to = "msncataractiolhospital@gmail.com"
         this.from = `Appointment Notification System <${process.env.NODEMAILERSENDER}>`
         this.appointment = appointment
     }
@@ -29,7 +29,7 @@ class MSNMail {
             to: this.to,
             from: this.from,
             subject,
-            text: `Appointment Details: \n Patient's Name: ${this.appointment.name} \n Patient's Age: ${this.appointment.age} \n Gender: ${this.appointment.gender} \n Address: ${this.appointment.address} \n Preferred Date: ${this.appointment.date} \n Preferred Time: ${this.appointment.time}`
+            text: `Appointment Details: \n Patient's Name: ${this.appointment.name} \n Patient's Age: ${this.appointment.age} \n Gender: ${this.appointment.sex} \n Address: ${this.appointment.address} \n Preferred Date: ${this.appointment.date} \n Preferred Time: ${this.appointment.time}`
         }
 
         //Finally send the email
