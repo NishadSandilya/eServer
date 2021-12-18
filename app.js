@@ -83,6 +83,7 @@ app.use(cors(corsOptions))
 //using cors options on all routes(Preflight)
 app.options('*', cors(corsOptions))
 //using free cors on single route
+app.use('/v1/appointment-service', cors(corsOptionsFree))
 app.options('/v1/appointment-service', cors(corsOptionsFree))
 
 //Set secure HTTP Headers
