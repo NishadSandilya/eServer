@@ -28,6 +28,7 @@ const itemRouter = require('./routers/itemRouter')
 const razorpayRouter = require('./routers/razorpayRouter')
 const ping = require('./routers/ping')
 const courseRouter = require('./routers/courseRouter')
+const msnRouter = require('./routers/msnRouter')
 
 //Initialize a rate limiter to prevent brute force and DOS attacks
 const limiter = rateLimit({
@@ -122,6 +123,7 @@ app.use('/v1/users/me', meRouter)
 app.use('/v1/admin', adminRouter)
 app.use('/v1/orders', orderRouter)
 app.use('/v1/payments', razorpayRouter)
+app.use('/v1/appointment-service', msnRouter)
 // app.use('/v1/items', itemRouter)
 
 //Handling unhandled routes
