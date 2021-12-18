@@ -8,4 +8,4 @@ router
     .route('/comms')
     .post(sendAppointmentDetails)
 
-module.exports = Router
+module.exports = router
