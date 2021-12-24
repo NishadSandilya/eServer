@@ -63,7 +63,7 @@ require('./utils/dbConnection')
 //     optionsSuccessStatus: 200
 // }
 
-const whitelist = ['http://localhost:3000', 'https://erida.in']
+const whitelist = ['https://c4d6-2405-201-a803-6060-9019-a53-7cd3-831a.ngrok.io','http://localhost:3000', 'https://erida.in']
 
 const corsOptions = {
     origin: function (origin, callback) {
@@ -81,9 +81,9 @@ const corsOptions = {
 app.get('/favicon.ico', (req, res) => { res.status(204) })
 
 //using cors on all routes
-app.use(cors())
-// //using cors options on all routes(Preflight)
-// app.options('*', cors())
+app.use(cors(corsOptions))
+//using cors options on all routes(Preflight)
+app.options('*', cors(corsOptions))
 
 //Set secure HTTP Headers
 app.use(helmet())
