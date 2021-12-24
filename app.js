@@ -81,9 +81,9 @@ const corsOptions = {
 app.get('/favicon.ico', (req, res) => { res.status(204) })
 
 //using cors on all routes
-app.use(cors(corsOptions))
+app.use(cors())
 //using cors options on all routes(Preflight)
-app.options('*', cors(corsOptions))
+app.options('*', cors())
 
 //Set secure HTTP Headers
 app.use(helmet())
