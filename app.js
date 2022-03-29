@@ -63,7 +63,7 @@ require('./utils/dbConnection')
 //     optionsSuccessStatus: 200
 // }
 
-const whitelist = ['https://c4d6-2405-201-a803-6060-9019-a53-7cd3-831a.ngrok.io','http://localhost:3000', 'https://erida.in']
+const whitelist = ['https://nishadsandilya.github.io/msn','http://localhost:3000', 'https://erida.in']
 
 const corsOptions = {
     origin: function (origin, callback) {
