@@ -20,7 +20,7 @@ exports.sendAppointmentDetails = asyncHandler(async(req, res, next) => {
 
     // //Send msn the SMS
     //Original Number: 8486887503
-    await sendSMS(8638779180, `Alert! New Appointment! Please check your gmail inbox: ${'https://mail.google.com'}`)
+    await sendSMS(8486887503, `Alert! New Appointment from a Patient. Please check your gmail inbox: ${'https://mail.google.com'}`)
 
     // //Send the user an SMS as well
     await sendSMS(req.body.phone, `Hi ${req.body.name}! Welcome to MSN Eye Hospital. We have received your online appointment and will get to you soon.`)
